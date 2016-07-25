@@ -1,7 +1,9 @@
 package com.khizar.codingtask.application;
 
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 
 import com.khizar.codingtask.application.model.City;
@@ -24,8 +26,11 @@ public class JsonToCsv {
 	    return;
 	}
 	try {
-	    url = new URL(URL_STRING + query);
+	    url = new URL(URL_STRING + URLEncoder.encode(query, "UTF-8"));
 	} catch (MalformedURLException e) {
+	    e.printStackTrace();
+	} catch (UnsupportedEncodingException e) {
+	    System.out.println("This is embarassing!! We cannot quite make out what city you mean, Please check your spelling and try again");
 	    e.printStackTrace();
 	}
 	
