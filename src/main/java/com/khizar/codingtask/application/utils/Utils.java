@@ -22,10 +22,11 @@ import com.khizar.codingtask.application.model.City;
  */
 public class Utils {
     /**
-     * This method takes a URL for the endpoint for cities data and returns a list of 
-     * City objects from that data. 
+     * This method takes a URL for the endpoint for cities data and returns a
+     * list of City objects from that data.
      * 
-     * @param url - URL of the Json endpoint
+     * @param url
+     *            - URL of the Json endpoint
      * @return A list of city objects
      */
     public static List<City> pareseJsonToCities(URL url) {
@@ -45,22 +46,23 @@ public class Utils {
 		    city.setId(id);
 
 		    JsonNode nameNode = currentCity.get("name");
-		    String name = nameNode.asText();
+		    String name = nameNode != null ? nameNode.asText() :" ";
 		    city.setName(name);
 
 		    JsonNode typeNode = currentCity.get("type");
-		    String type = typeNode.asText();
+		    String type = typeNode != null ? typeNode.asText() :" ";
 		    city.setType(type);
 
 		    JsonNode geoPositionNode = currentCity.get("geo_position");
+		    if (geoPositionNode != null) {
+			JsonNode latitudeNode = geoPositionNode.get("latitude");
+			String latitude = latitudeNode!=null?latitudeNode.asText():" ";
+			city.setLatitude(latitude);
 
-		    JsonNode latitudeNode = geoPositionNode.get("latitude");
-		    String latitude = latitudeNode.asText();
-		    city.setLatitude(latitude);
-
-		    JsonNode longitudeNode = geoPositionNode.get("longitude");
-		    String longitude = longitudeNode.asText();
-		    city.setLongitude(longitude);
+			JsonNode longitudeNode = geoPositionNode.get("longitude");
+			String longitude = longitudeNode!=null?longitudeNode.asText():" ";
+			city.setLongitude(longitude);
+		    }
 
 		    cities.add(city);
 		}
@@ -72,23 +74,26 @@ public class Utils {
 	} catch (IOException e) {
 	    System.out.println("File I/O problems.");
 	    e.printStackTrace();
-	} 
+	}
 	return cities;
     }
 
     /**
-     * This method takes a list of City objects and filename and create a CSV file with
-     * the given name and List of Cities. Each query string with at least one result will 
-     * have only one CSV file as it would be overwritten if asked for again.
+     * This method takes a list of City objects and filename and create a CSV
+     * file with the given name and List of Cities. Each query string with at
+     * least one result will have only one CSV file as it would be overwritten
+     * if asked for again.
      * 
-     * @param cities - List of cities to be converted to CSV
-     * @param filename Name of the CSV file.
+     * @param cities
+     *            - List of cities to be converted to CSV
+     * @param filename
+     *            Name of the CSV file.
      */
     public static void writeCsvFile(List<City> cities, String filename) {
 	CsvMapper mapper = new CsvMapper();
 	CsvSchema schema = mapper.schemaFor(City.class).withHeader();
 	ObjectWriter writer = mapper.writer(schema);
-	
+
 	try {
 	    writer.writeValue(new File(filename + ".csv"), cities); // making separate file for each city
 	    System.out.println("The results are written to " + filename + ".csv");
