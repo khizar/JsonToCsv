@@ -86,8 +86,9 @@ public class Utils {
      */
     public static void writeCsvFile(List<City> cities, String filename) {
 	CsvMapper mapper = new CsvMapper();
-	CsvSchema schema = mapper.schemaFor(City.class);
+	CsvSchema schema = mapper.schemaFor(City.class).withHeader();
 	ObjectWriter writer = mapper.writer(schema);
+	
 	try {
 	    writer.writeValue(new File(filename + ".csv"), cities); // making separate file for each city
 	    System.out.println("The results are written to " + filename + ".csv");
