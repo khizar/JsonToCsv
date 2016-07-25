@@ -1,4 +1,4 @@
-package codingtask.application.model;
+package com.khizar.codingtask.application.model;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
