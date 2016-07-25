@@ -1,4 +1,4 @@
-package com.khizar.codingtask.application.utils;
+package codingtask.application.utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,6 +6,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import codingtask.application.model.City;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
@@ -15,7 +17,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import com.khizar.codingtask.application.model.City;
 
 /**
  * @author Khizar

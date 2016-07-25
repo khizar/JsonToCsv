@@ -1,11 +1,11 @@
-package com.khizar.codingtask.application;
+package codingtask.application;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-import com.khizar.codingtask.application.model.City;
-import com.khizar.codingtask.application.utils.Utils;
+import codingtask.application.model.City;
+import codingtask.application.utils.Utils;
 
 /**
  * @author Khizar
