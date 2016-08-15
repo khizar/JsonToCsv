@@ -96,7 +96,7 @@ public class Utils {
 
 	try {
 	    writer.writeValue(new File(filename + ".csv"), cities); // making separate file for each city
-	    System.out.println("The results are written to " + filename + ".csv");
+	    System.out.println("The results are saved to " + filename + ".csv");
 	} catch (JsonGenerationException | JsonMappingException e) {
 	    System.out.println("Could not write CSV file.");
 	    e.printStackTrace();
